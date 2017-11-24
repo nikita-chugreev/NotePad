@@ -1,7 +1,4 @@
 package com.nikita;
-
-import com.sun.xml.internal.bind.v2.runtime.reflect.Lister;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,31 +13,58 @@ public class Window {
     private JFileChooser f = new JFileChooser();
 
     public Window() {
+		
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
+        JFrame frame = new JFrame("TextEdit");
+        
         JMenuBar menuBar = new JMenuBar();
+        
         JMenu file = new JMenu("Файл");
+        JMenu edit = new JMenu("Правка");
+        JMenu search = new JMenu("Search");
+        
         JMenuItem newFile = new JMenuItem("Создать файл");
         JMenuItem openFile = new JMenuItem("Открыть файл");
         JMenuItem saveFile = new JMenuItem("Сохранить файл");
         JMenuItem printFile = new JMenuItem("Печать файла");
+        
+        JMenuItem undo = new JMenuItem("undo");
+        JMenuItem redo = new JMenuItem("redo");
+        JMenuItem cut = new JMenuItem("cut");
+        JMenuItem copy = new JMenuItem("copy");
+        JMenuItem past = new JMenuItem("past");
+        JMenuItem selectAll = new JMenuItem("selectAll");
+        
+        JMenuItem find = new JMenuItem("find");
+        JMenuItem findNext = new JMenuItem("findNext");
+        JMenuItem findPrevious = new JMenuItem("findPrevious");
+        JMenuItem replace = new JMenuItem("replace");
+        
         file.add(newFile);
         file.add(openFile);
         file.add(saveFile);
         file.add(printFile);
+		
+		edit.add(undo);
+		edit.add(redo);
+		edit.add(cut);
+		edit.add(copy);
+		edit.add(past);
+		edit.add(selectAll);
+		
+		search.add(find);
+		search.add(findNext);
+		search.add(findPrevious);
+		search.add(replace);
+		
         menuBar.add(file);
-
-        JFrame frame = new JFrame("TextEdit");
-        frame.setJMenuBar(menuBar);
-        frame.add(tabbedPane);
-        frame.setSize(800, 600);
-        frame.setResizable(false);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+        menuBar.add(edit);
+        menuBar.add(search);
 
         newFile.addActionListener(e -> {
             JTextArea textArea = new JTextArea();
